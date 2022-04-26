@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    class Vehicle {
+        constructor(type,regNumber, color){
+            this._type=type;
+            this._regNumber=regNumber;
+            this._color=color;
+           
+        }
+        get type(){
+            return this._type;
+        }
+        set type(value){
+            this._type=value;
+        }
+    }
+    class Car extends Vehicle{
+        constructor(regNumber,color){
+        super("Car",regNumber,color)
+    }
+}
+class Bike extends Vehicle{
+        constructor(regNumber,color){
+        super("Bike",regNumber,color)
+    }
+}
+class Truck extends Vehicle{
+        constructor(regNumber,color){
+        super("Truck",regNumber,color)
+    }
+}
+ class Slot {
+    constructor(type,number){
+        this.number =number;
+        this.type=type;
+        this._isBooked =false;
+    }
+    get isBooked(){
+        return this._isBooked;
+    }
+    set isBooked(value){
+        this._isBooked=value;
+    }
+ }
+//  Individual Floor
+  class ParkingFloor{
+      constructor(floornumber,maxFloor){
+          this.floornumber = floornumber ;
+          this._parkingsports = [];
+      
+    //   get _parkingsports(){
+    //       return this._parkingsports;
+    //   }
+    for ( let i = 0; i < maxfloor; i++){
+        if(i==0){
+            this._parkingsports.push(new slot("Truck",i));
+        } else if (i==1){
+            this._parkingsports.push(new slot("Bike",i));
+        }else{
+            this._parkingsports.push(new("Cars",i));
+        }
+  }
+}
+get _parkingsports(){
+    return this._parkingsports;
+}
+}
+// let pf1=new ParkingFloor(0,3);
+// console.log("pf1;",pf1)
+// ParkingFloor
+class Parkinglot{
+    constructor (number){
+        this._floor=[];
+        this._numberFloor=number;
+        for( let i =o;i<number;i++){
+            this._floor[i]=new ParkingFloor(i,number)
+        }
+}
+get numberofFloor(){
+    return this._numberofFloor; 
+
+}
+    get floors(){
+        return this._floor;
+    }
+    set floors(value){
+        this._floor=value
+    }
+
+    parkVehicle(vehicle){
+        let slot = this.findSlot(vehicle.type)
+        if (slot)
+        {
+            console.log("No slots")
+            return false;
+        }
+        this.booklot(slot)
+        let ticket = new Ticket(slot.floornumber,slot)
+        console.log()
+    }
+    findSlot(type){
+        
+  for( let i =0;i<this._numberofFloor;i++){
+      for(let slot of this._floor[i]._parkingsports){
+          if(slot.type===type && !slot._isBooked){
+              return{
+                  floornumber:i,slot:slot
+              }
+          }
+      }
+  }
+     return false;
+
+    }
+    bookslot(slot){
+        slot.slot.isBooked=true;
+        console.log("slot is booked:",slot)
+
+        return true;
+    }
+}
+class Ticket{
+    constructor(floorNumber, slotNumber){
+        this.floorNumber=floorNumber;
+        this.slotnNumber=slotnNumber;
+        this.issuedAt = new Date();
+    }
+}
+let p1 = new ParkingLot(3);
+let b1 =new Bike("MH 12-123","Black");
+p1.parkVehicle(b1);
+
+
+
+
+
+
+
+
+</script>
